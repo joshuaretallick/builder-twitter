@@ -8,6 +8,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1 or /tweets/1.json
   def show
+    @comments = @tweet.comments.all
+    @comment = @tweet.comments.build
   end
 
   # GET /tweets/new

@@ -1,19 +1,11 @@
-<h1>Tweets</h1>
-
-<% @tweets.in_groups_of(1) do |group| %>
-  <div class="row">
-    <% group.compact.each do |tweet| %>
-      <div class="col-md-4">
-        <%= image_tag tweet.picture_url, width: '50%' if tweet.picture.present? %>
-        <%= link_to tweet.content, tweet %>
-        <% if tweet.user %>
-            by <%= tweet.user.name %>
-        <% end %>
-      </div>
-      <div class="card-footer text-muted">
-          <small>Created <%= time_ago_in_words(tweet.created_at) %> ago,
-          edited <%= time_ago_in_words(tweet.updated_at) %> ago</small>
-      </div>
+ <div class=”col-6”>
+    <% @tweets.each do |tweet| %>
+    <%= image_tag tweet.picture_url, width: '25%' if tweet.picture.present? %>
+    <div class="card-body">
+      <p class="card-text border-primary mb-3"><%= link_to tweet.content, tweet %></p>
+      <% if tweet.user %>
+          Tweeted by <%= tweet.user.name %> <%= time_ago_in_words(tweet.created_at) %> ago
+      <% end %>
+    </div>
     <% end %>
-  </div>
-<% end %>
+</div>
